@@ -9,8 +9,8 @@ import gainData as gainData
 
 #fileNameTimeTraceCST='../Results/Sinuous_Antenna/TimeDomain_0.65-30-325-MP9.txt'
 #fileNameS11CST='../Results/Sinuous_Antenna/S11_0.65-30-325-MP9'
-fileNameTimeTraceCST='/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/TimeDomain_0.6-30-325-MP8.txt'
-fileNameS11CST='/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/S11_0.6-30-325-MP8'
+fileNameTimeTraceCST='/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/TimeDomain_0.6-30-375-MP7.txt'
+fileNameS11CST='/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/S11_0.6-30-375-MP7'
 #fileNameS11VNA='../reflectometry/RichBradley_GreenBank/TallCylinderGapOverDish_S11_Greenbank_RichBradley.d1'
 
 FLOW=0.05
