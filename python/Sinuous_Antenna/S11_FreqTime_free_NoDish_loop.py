@@ -13,6 +13,8 @@ Outer_Diameter=325
 Inner_Diameter=30
 MP=8
 
+S11_Power = 1
+
 Growth_Rate_List = [55,60,65,70,75,80,85,90]
 Outer_Diameter_List = [325]
 Inner_Diameter_List = []
@@ -48,31 +50,31 @@ for Growth_Rate in Growth_Rate_List:
 		#first make original plot comparing s11 of time trace and s11 of vna
 
 		#p.plot(gainData_vna.tAxis,10.*n.log10(n.abs(gainData_vna.gainDelay)),color='grey',ls='-',marker='o',label='VNA Measurement',markersize=4,markeredgecolor='none')
-		p.plot(gainData_timeTrace.tAxis,10.*n.log10(n.abs(gainData_timeTrace.gainDelay)),color='k',ls='-',marker='o',label='CST timetrace',markersize=4,markeredgecolor='none')
-		p.plot(gainData_cst.tAxis,10.*n.log10(n.abs(gainData_cst.gainDelay)),color='k',ls='--',marker='o',label='CST $S_{11}$',markersize=4,markeredgecolor='none')
+		p.plot(gainData_timeTrace.tAxis,10.*S11_Power*n.log10(n.abs(gainData_timeTrace.gainDelay)),color='k',ls='-',marker='o',label='CST timetrace',markersize=4,markeredgecolor='none')
+		p.plot(gainData_cst.tAxis,10.*S11_Power*n.log10(n.abs(gainData_cst.gainDelay)),color='k',ls='--',marker='o',label='CST $S_{11}$',markersize=4,markeredgecolor='none')
 		p.xlim(-30,400)
-		p.ylim(-70,0)
+		p.ylim(-70*S11_Power,0)
 		p.ylabel('|$\widetilde{S}_{11}$|(dB)')
 		p.xlabel('delay (ns)')
 		p.legend(loc='best')
-		p.title('S11_CST_Delay_0.%i-%i-%i' %(Growth_Rate, Inner_Diameter,Outer_Diameter))
+		p.title('S11_CST_Delay_0.%i-%i-%i_PW%i' %(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power))
 		#p.show()
 		p.grid()
 		#p.savefig('../plots/s11_CST_vs_ReflectometryRich_TallCylinderGapFeedOnly_Delay.pdf',bbox_inches='tight')
-		p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_CST_Delay_0.%i-%i-%i.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter),bbox_inches='tight')
+		p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_CST_Delay_0.%i-%i-%i_PW%i.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power),bbox_inches='tight')
 		p.close()
 
 		#p.plot(gainData_vna.fAxis,10.*n.log10(n.abs(gainData_vna.gainFrequency)),color='grey',ls='-',marker='o',label='VNA Measurement',markersize=4,markeredgecolor='none')
-		p.plot(gainData_timeTrace.fAxis,10.*n.log10(n.abs(gainData_timeTrace.gainFrequency)),color='k',ls='-',marker='o',label='CST timetrace',markersize=4,markeredgecolor='none')
-		p.plot(gainData_cst.fAxis,10.*n.log10(n.abs(gainData_cst.gainFrequency)),color='k',ls='--',marker='o',label='CST $S_{11}$',markersize=4,markeredgecolor='none')
+		p.plot(gainData_timeTrace.fAxis,10.*S11_Power*n.log10(n.abs(gainData_timeTrace.gainFrequency)),color='k',ls='-',marker='o',label='CST timetrace',markersize=4,markeredgecolor='none')
+		p.plot(gainData_cst.fAxis,10.*S11_Power*n.log10(n.abs(gainData_cst.gainFrequency)),color='k',ls='--',marker='o',label='CST $S_{11}$',markersize=4,markeredgecolor='none')
 		p.xlim(.045,.255)
-		p.ylim(-25,0)
+		p.ylim(-25*S11_Power,0)
 		p.ylabel('|S$_{11}$|(dB)')
 		p.xlabel('f (GHz)')
 		p.legend(loc='best')
-		p.title('S11_CST_Frequency_0.%i-%i-%i' %(Growth_Rate, Inner_Diameter,Outer_Diameter)) 
+		p.title('S11_CST_Frequency_0.%i-%i-%i_PW%i' %(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power)) 
 		#p.show()
 		p.grid()
 		#p.savefig('../plots/s11_CST_vs_ReflectometryRich_TallCylinderGapFeedOnly_Frequency.pdf',bbox_inches='tight')
-		p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_CST_Frequency_0.%i-%i-%i.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter),bbox_inches='tight')
+		p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_CST_Frequency_0.%i-%i-%i_%i.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power),bbox_inches='tight')
 		p.close()
