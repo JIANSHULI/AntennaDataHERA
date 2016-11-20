@@ -13,7 +13,7 @@ Outer_Diameter=325
 Inner_Diameter=30
 MP=8
 
-S11_Power = 1
+S11_Power = 2
 
 Growth_Rate_List = [55,60,65,70,75,80,85,90]
 Outer_Diameter_List = [325]
@@ -76,5 +76,5 @@ for Growth_Rate in Growth_Rate_List:
 		#p.show()
 		p.grid()
 		#p.savefig('../plots/s11_CST_vs_ReflectometryRich_TallCylinderGapFeedOnly_Frequency.pdf',bbox_inches='tight')
-		p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_CST_Frequency_0.%i-%i-%i_%i.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power),bbox_inches='tight')
+		p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_CST_Frequency_0.%i-%i-%i_PW%i.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power),bbox_inches='tight')
 		p.close()
