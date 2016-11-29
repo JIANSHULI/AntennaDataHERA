@@ -13,7 +13,7 @@ Outer_Diameter=325
 Inner_Diameter=30
 MP=8
 
-S11_Power = 1
+S11_Power = 2
 
 Growth_Rate_List = [55,60,65,70,75,80,85,90]
 Outer_Diameter_List = [325]
