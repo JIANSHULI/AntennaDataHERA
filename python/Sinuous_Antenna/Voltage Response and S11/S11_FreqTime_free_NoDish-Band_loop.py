@@ -24,7 +24,7 @@ S11_Power = 2
 Growth_Rate_List = [50]
 Outer_Diameter_List = [275]
 Inner_Diameter_List = []
-Band_Resistance_List = [100]
+Band_Resistance_List = [1]
 
 for Growth_Rate in Growth_Rate_List:
 	for Outer_Diameter in Outer_Diameter_List:
@@ -61,7 +61,7 @@ for Growth_Rate in Growth_Rate_List:
 			p.plot(gainData_timeTrace.tAxis,10.*S11_Power*n.log10(n.abs(gainData_timeTrace.gainDelay)),color='k',ls='-',marker='o',label='CST timetrace',markersize=4,markeredgecolor='none')
 			p.plot(gainData_cst.tAxis,10.*S11_Power*n.log10(n.abs(gainData_cst.gainDelay)),color='k',ls='--',marker='o',label='CST $S_{11}$',markersize=4,markeredgecolor='none')
 			p.xlim(-30,400)
-			p.ylim(-70*S11_Power,0)
+			p.ylim(-75*S11_Power,0)
 			p.ylabel('|$\widetilde{S}_{11}$|(dB)')
 			p.xlabel('delay (ns)')
 			p.legend(loc='best')

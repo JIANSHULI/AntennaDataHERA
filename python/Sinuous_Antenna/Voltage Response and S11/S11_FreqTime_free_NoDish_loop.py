@@ -19,10 +19,10 @@ Outer_Diameter=325
 Inner_Diameter=30
 MP=8
 
-S11_Power = 2
+S11_Power = 1
 
-Growth_Rate_List = [55,60,65,70,75,80,85,90]
-Outer_Diameter_List = [325]
+Growth_Rate_List = [50] #[55,60,65,70,75,80,85,90]
+Outer_Diameter_List = [275]
 Inner_Diameter_List = []
 
 for Growth_Rate in Growth_Rate_List:
