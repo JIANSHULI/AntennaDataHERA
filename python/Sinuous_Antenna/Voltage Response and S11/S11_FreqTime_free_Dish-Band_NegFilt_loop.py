@@ -26,8 +26,8 @@ for Growth_Rate in Growth_Rate_List:
 
 			#fileNameTimeTraceCST='../Results/Sinuous_Antenna/TimeDomain_0.65-30-325-MP9.txt'
 			#fileNameS11CST='../Results/Sinuous_Antenna/S11_0.65-30-325-MP9'
-			fileNameTimeTraceCST='/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/TimeDomain_0.%i-%i-%i_dish-band-%i.txt' %(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance)
-			fileNameS11CST='/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/S11_0.%i-%i-%i_dish-band-%i' %(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance)
+			fileNameTimeTraceCST='/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/TimeDomain_0.%i-%i-%i_dish-band-%s.txt' %(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance)
+			fileNameS11CST='/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/S11_0.%i-%i-%i_dish-band-%s' %(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance)
 			#fileNameS11VNA='../reflectometry/RichBradley_GreenBank/TallCylinderGapOverDish_S11_Greenbank_RichBradley.d1'
 
 			FLOW=0.05
@@ -59,11 +59,11 @@ for Growth_Rate in Growth_Rate_List:
 			p.ylabel('|$\widetilde{S}_{11}$|(dB)')
 			p.xlabel('delay (ns)')
 			p.legend(loc='best')
-			p.title('S11_CST_Delay_0.%i-%i-%i_NF_PW%i_dish-band-%i' %(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power,Band_Resistance))
+			p.title('S11_CST_Delay_0.%i-%i-%i_NF_PW%i_dish-band-%s' %(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power,Band_Resistance))
 			#p.show()
 			p.grid()
 			#p.savefig('../plots/s11_CST_vs_ReflectometryRich_TallCylinderGapFeedOnly_Delay.pdf',bbox_inches='tight')
-			p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_CST_Delay_0.%i-%i-%i_NF_PW%i_dish-band-%i.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power,Band_Resistance),bbox_inches='tight')
+			p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_CST_Delay_0.%i-%i-%i_NF_PW%i_dish-band-%s.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power,Band_Resistance),bbox_inches='tight')
 			p.close()
 
 			#p.plot(gainData_vna.fAxis,10.*n.log10(n.abs(gainData_vna.gainFrequency)),color='grey',ls='-',marker='o',label='VNA Measurement',markersize=4,markeredgecolor='none')
@@ -74,9 +74,9 @@ for Growth_Rate in Growth_Rate_List:
 			p.ylabel('|S$_{11}$|(dB)')
 			p.xlabel('f (GHz)')
 			p.legend(loc='best')
-			p.title('S11_CST_Frequency_0.%i-%i-%i_NF_PW%i_dish-band-%i' %(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power,Band_Resistance)) 
+			p.title('S11_CST_Frequency_0.%i-%i-%i_NF_PW%i_dish-band-%s' %(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power,Band_Resistance)) 
 			#p.show()
 			p.grid()
 			#p.savefig('../plots/s11_CST_vs_ReflectometryRich_TallCylinderGapFeedOnly_Frequency.pdf',bbox_inches='tight')
-			p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_CST_Frequency_0.%i-%i-%i_NF_PW%i_dish-band-%i.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power,Band_Resistance),bbox_inches='tight')
+			p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_CST_Frequency_0.%i-%i-%i_NF_PW%i_dish-band-%s.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power,Band_Resistance),bbox_inches='tight')
 			p.close()
