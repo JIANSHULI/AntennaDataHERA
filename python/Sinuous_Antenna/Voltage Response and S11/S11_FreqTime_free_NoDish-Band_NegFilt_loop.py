@@ -13,11 +13,11 @@ Outer_Diameter=325
 Inner_Diameter=30
 MP=8
 
-S11_Power = 1
+S11_Power = 2
 
 Growth_Rate_List = [50]
 Outer_Diameter_List = [275]
-Band_Resistance_List = [0.5] #[25,50,75,125]
+Band_Resistance_List = [0.1,5,10,15,20] #[25,50,75,125]
 
 for Growth_Rate in Growth_Rate_List:
 	for Outer_Diameter in Outer_Diameter_List:
