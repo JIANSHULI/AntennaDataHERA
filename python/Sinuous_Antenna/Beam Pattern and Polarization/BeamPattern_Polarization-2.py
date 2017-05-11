@@ -157,7 +157,7 @@ S11_3 = (1 - 85 / Trx_targ).clip(0,1)
 N = 0
 
 Growth_Rate_List = [80]
-Outer_Diameter_List = [225]
+Outer_Diameter_List = [175]
 Inner_Diameter_List = [30]
 Band_Resistance_List = [15]
 Skirt_Diameter_List = [1.2]
@@ -270,8 +270,8 @@ for N in range(2):
                                 p.gcf().set_size_inches([8,6])
                                 #p.gca().yaxis.grid(which='minor')
                                 p.legend(loc='best',fontsize=10,ncol=1) 
-                                p.title('FarArea_Y_0.%i-%i-%i_dish-band_%s-skirt-%s-%s' %(Growth_Rate,Inner_Diameter, Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height))                           
-                                p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/FarArea_Y_0.%i-%i-%i_dish-band_%s-skirt-%s-%s.pdf'%(Growth_Rate,Inner_Diameter, Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height),bbox_inches='tight')
+                                p.title('FarEffecArea_Y_0.%i-%i-%i_dish-band_%s-skirt-%s-%s' %(Growth_Rate,Inner_Diameter, Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height))                           
+                                p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/FarEffecArea_Y_0.%i-%i-%i_dish-band_%s-skirt-%s-%s.pdf'%(Growth_Rate,Inner_Diameter, Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height),bbox_inches='tight')
                                 p.close()
                                 
                                 for m in range(len(Frequency_List)):                                                                    
@@ -287,7 +287,7 @@ for N in range(2):
                                     p.ylabel('Directivity (dB)')
                                     p.gcf().set_size_inches([10,7])
                                     p.title('FarCut_Y_0.%i-%i-%i_dish-band_%s-skirt-%s-%s-%s-%s-%s' %(Growth_Rate,Inner_Diameter, Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height,Frequency_List[m],PhiDeg_List[0],PhiDeg_List[1]))
-                                    p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/FarArea_Y_0.%i-%i-%i_dish-band_%s-skirt-%s-%s-%s-%s-%s.pdf'%(Growth_Rate,Inner_Diameter, Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height,Frequency_List[m],PhiDeg_List[0],PhiDeg_List[1]),bbox_inches='tight')
+                                    p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/FarField_Y_0.%i-%i-%i_dish-band_%s-skirt-%s-%s-%s-%s-%s.pdf'%(Growth_Rate,Inner_Diameter, Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height,Frequency_List[m],PhiDeg_List[0],PhiDeg_List[1]),bbox_inches='tight')
                                     p.close()
                                     
                                 phi = m = 0
@@ -309,7 +309,7 @@ for N in range(2):
                                     p.ylabel('Directivity (dB)')
                                     p.gcf().set_size_inches([10,7])
                                     p.title('FarCut_Y_0.%i-%i-%i_dish-band_%s-skirt-%s-%s-%s' %(Growth_Rate,Inner_Diameter, Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height,PhiDeg_List[phi]))
-                                    p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/FarArea_Y_0.%i-%i-%i_dish-band_%s-skirt-%s-%s-%s.pdf'%(Growth_Rate,Inner_Diameter, Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height,PhiDeg_List[phi]),bbox_inches='tight')
+                                    p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/FarField_Y_0.%i-%i-%i_dish-band_%s-skirt-%s-%s-%s.pdf'%(Growth_Rate,Inner_Diameter, Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height,PhiDeg_List[phi]),bbox_inches='tight')
                                     p.close()
                                     
                                 fileNameTimeTraceCST='/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/TimeDomain_0.%i-%i-%i_dish-band-%s-skirt-%s-%s.txt' %(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height)
