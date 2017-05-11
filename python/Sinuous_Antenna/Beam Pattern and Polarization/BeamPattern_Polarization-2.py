@@ -156,8 +156,8 @@ S11_3 = (1 - 85 / Trx_targ).clip(0,1)
 #PW = S11_Power = 2
 N = 0
 
-Growth_Rate_List = [49]
-Outer_Diameter_List = [225]
+Growth_Rate_List = [80]
+Outer_Diameter_List = [175]
 Inner_Diameter_List = [30]
 Band_Resistance_List = [15]
 Skirt_Diameter_List = [1.2]
@@ -247,7 +247,7 @@ for N in range(2):
                             for Port_Number in Port_Number_List:
                                 BeamSinuousDishBandSkirt = BeamSinous_Y('Sinuous_Antenna', Frequency_List,64,Skirt_Diameter,Skirt_Height,Growth_Rate,Outer_Diameter,Inner_Diameter,Band_Resistance,Port_Number, ['XX'],rotateY=True)
                                 
-                                p.plot(BeamSinuousDishBandSkirt.fAxis/1e6,BeamSinuousDishBandSkirt.ellipticity,label='Sinuous_Dish-Band-Skirt',marker='o',color='k',ls='-',lw=2)
+                                p.plot(BeamSinuousDishBandSkirt.fAxis/1e6,BeamSinuousDishBandSkirt.ellipticity,'o',label='Sinuous_Dish-Band-Skirt')
                                 p.xlabel('f (MHz)',fontsize=20)
                                 p.ylabel('$\\xi$',fontsize=20)
                                 p.legend(loc='best',fontsize=10,ncol=1)
@@ -261,7 +261,7 @@ for N in range(2):
                                 p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/FarEllip_Y_0.%i-%i-%i_dish-band_%s-skirt-%s-%s.pdf'%(Growth_Rate,Inner_Diameter, Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height),bbox_inches='tight')
                                 p.close() 
                                 
-                                p.plot(BeamSinuousDishBandSkirt.fAxis/1e6,BeamSinuousDishBandSkirt.effArea[0]/(pi*7*7),marker='o',label='Sinuous_Dish-Band-Skirt',color='k',ls='-',lw=2)
+                                p.plot(BeamSinuousDishBandSkirt.fAxis/1e6,BeamSinuousDishBandSkirt.effArea[0]/(pi*7*7),'o',label='Sinuous_Dish-Band-Skirt')
                                 p.xlabel('f (MHz)',fontsize=20)
                                 p.ylabel('$A_{eff}/\\pi r^2$',fontsize=20)
                                 p.grid()
