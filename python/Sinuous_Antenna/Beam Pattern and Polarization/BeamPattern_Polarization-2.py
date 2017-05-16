@@ -157,7 +157,7 @@ S11_3 = (1 - 85 / Trx_targ).clip(0,1)
 N = 0
 
 Growth_Rate_List = [80]
-Outer_Diameter_List = [175]
+Outer_Diameter_List = [175,225]
 Inner_Diameter_List = [30]
 Band_Resistance_List = [15]
 Skirt_Diameter_List = [1.2]
@@ -259,7 +259,9 @@ for N in range(2):
                                 p.gca().yaxis.grid(which='minor')
                                 p.grid()   
                                 p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/FarEllip_Y_0.%i-%i-%i_dish-band_%s-skirt-%s-%s.pdf'%(Growth_Rate,Inner_Diameter, Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height),bbox_inches='tight')
-                                p.close() 
+                                p.close()
+                                
+                                n.savetxt('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/FarEllip_Data_Y_0.%i-%i-%i_dish-band_%s-skirt-%s-%s.txt'%(Growth_Rate,Inner_Diameter, Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height),n.c_[BeamSinuousDishBandSkirt.fAxis/1e6,BeamSinuousDishBandSkirt.ellipticity],fmt=['%.2f','%.4f']) 
                                 
                                 p.plot(BeamSinuousDishBandSkirt.fAxis/1e6,BeamSinuousDishBandSkirt.effArea[0]/(pi*7*7),'o',label='Sinuous_Dish-Band-Skirt')
                                 p.xlabel('f (MHz)',fontsize=20)
@@ -273,6 +275,8 @@ for N in range(2):
                                 p.title('FarEffecArea_Y_0.%i-%i-%i_dish-band_%s-skirt-%s-%s' %(Growth_Rate,Inner_Diameter, Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height))                           
                                 p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/FarEffecArea_Y_0.%i-%i-%i_dish-band_%s-skirt-%s-%s.pdf'%(Growth_Rate,Inner_Diameter, Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height),bbox_inches='tight')
                                 p.close()
+                                
+                                n.savetxt('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/FarEffecArea_Data_Y_0.%i-%i-%i_dish-band_%s-skirt-%s-%s.txt'%(Growth_Rate,Inner_Diameter, Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height),n.c_[BeamSinuousDishBandSkirt.fAxis/1e6,BeamSinuousDishBandSkirt.effArea[0]/(pi*7*7)],fmt=['%.2f','%.4f']) 
                                 
                                 for m in range(len(Frequency_List)):                                                                    
                                     nth=8000
