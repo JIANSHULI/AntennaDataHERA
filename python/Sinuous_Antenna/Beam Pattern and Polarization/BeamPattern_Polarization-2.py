@@ -220,8 +220,8 @@ S11_3 = (1 - 85 / Trx_targ).clip(0,1)
 #PW = S11_Power = 2
 N = 0
 
-Growth_Rate_List = [80]
-Outer_Diameter_List = [175]
+Growth_Rate_List = [49]
+Outer_Diameter_List = [225]
 Inner_Diameter_List = [30]
 Band_Resistance_List = [15]
 Skirt_Diameter_List = [1.2]
@@ -233,7 +233,7 @@ Port_Number_List = [1]
 Phi_List = [0,pi/2.0]
 PhiDeg_List = [0,90]
 
-BackPlane = 1
+BackPlane = 0
 
 # Y-Direction
 
@@ -391,6 +391,7 @@ for N in range(2):
                                                 
                                             fileNameTimeTraceCST='/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/TimeDomain_0.%i-%i-%i_dish-band-%s-skirt-%s-%s.txt' %(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height)
                                             fileNameS11CST='/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/S11_0.%i-%i-%i_dish-band-%s-skirt-%s-%s' %(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height)
+                                            fileNameImpedanceCST='/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Impedance_0.%i-%i-%i_dish-band-%s-skirt-%s-%s' %(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height)
                 #                            fileNameTimeTraceCST='/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Far_0.%i-%i_dish-band-%s-Skirt-%s-%s-%s-%s.txt' %(Growth_Rate,Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height,Frequecy,Port_Number)
                                             #fileNameS11VNA='../reflectometry/RichBradley_GreenBank/TallCylinderGapOverDish_S11_Greenbank_RichBradley.d1'
 
@@ -401,11 +402,16 @@ for N in range(2):
                                             gainData_timeTrace=gainData.GainData(fileNameTimeTraceCST,
                                                                                 fileType='CST_TimeTrace',
                                                                                 fMin=FLOW,fMax=FHIGH,
-                                                                                comment='s11 derived from cst time domain data')
+                                                                                comment='S11 derived from cst time domain data')
                                             gainData_cst=gainData.GainData(fileNameS11CST,
                                                                             fileType='CST_S11',
                                                                             fMin=FLOW,fMax=FHIGH,
-                                                                            comment='s11 obtained directly from cst')
+                                                                            comment='S11 obtained directly from cst')
+                                            gainData_impedance=gainData.GainData(fileNameImpedanceCST,
+                                                                            fileType='CST_Impedance',
+                                                                            fMin=FLOW,fMax=FHIGH,
+                                                                            comment='Impedance obtained directly from cst')
+
                                             #gainData_far=
                                             #gainData_vna=gainData.GainData(fileNameS11VNA,
                                             #							   fileType='VNAHP_S11',
@@ -413,6 +419,7 @@ for N in range(2):
                                             #							   comment='s11 obtained from richs vna measurement')
 
                                             print gainData_cst.gainFrequency.shape
+                                            print gainData_impedance.gainFrequency.shape
 
                                             #first make original plot comparing s11 of time trace and s11 of vna
 
@@ -445,6 +452,30 @@ for N in range(2):
                                             p.grid()
                                             #p.savefig('../plots/s11_CST_vs_ReflectometryRich_TallCylinderGapFeedOnly_Frequency.pdf',bbox_inches='tight')
                                             p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_CST_Frequency_0.%i-%i-%i_PW%i_Cr_dish-band-%s-skirt-%s-%s.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power,Band_Resistance,Skirt_Diameter,Skirt_Height),bbox_inches='tight')
+                                            p.close()
+                                            
+                                            p.plot(gainData_impedance.fAxis,n.abs(gainData_impedance.gainFrequency),color='k',ls='-',marker='o',label='CST Impedance Abs',markersize=4,markeredgecolor='none')
+                                            p.xlim(.045,.255)
+                                            p.ylabel('Impedance(Abs)/Ohm')
+                                            p.xlabel('f (GHz)')
+                                            p.legend(loc='best')
+                                            p.title('ImpedanceAbs_CST_Frequency_0.%i-%i-%i_dish-band-%s-skirt-%s-%s' %(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height)) 
+                                            #p.show()
+                                            p.grid()
+                                            #p.savefig('../plots/s11_CST_vs_ReflectometryRich_TallCylinderGapFeedOnly_Frequency.pdf',bbox_inches='tight')
+                                            p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/ImpedanceAbs_CST_Frequency_0.%i-%i-%i_dish-band-%s-skirt-%s-%s.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height),bbox_inches='tight')
+                                            p.close()
+                                            
+                                            p.plot(gainData_impedance.fAxis,n.angle(gainData_impedance.gainFrequency),color='k',ls='-',marker='o',label='CST Impedance Pha',markersize=4,markeredgecolor='none')                                        
+                                            p.xlim(.045,.255)
+                                            p.ylabel('|Impedance(Pha)/deg')
+                                            p.xlabel('f (GHz)')
+                                            p.legend(loc='best')
+                                            p.title('ImpedancePha_CST_Frequency_0.%i-%i-%i_dish-band-%s-skirt-%s-%s' %(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height)) 
+                                            #p.show()
+                                            p.grid()
+                                            #p.savefig('../plots/s11_CST_vs_ReflectometryRich_TallCylinderGapFeedOnly_Frequency.pdf',bbox_inches='tight')
+                                            p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/ImpedancePha_CST_Frequency_0.%i-%i-%i_dish-band-%s-skirt-%s-%s.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height),bbox_inches='tight')
                                             p.close()
                                         
                                         if BackPlane == 1:
@@ -509,7 +540,7 @@ for N in range(2):
                                                         p.plot(tha,hpCut(Phi_List[phi],nth,10*n.log10(BeamSinuousDishBandSkirt.data[0,m,:])),label='SinuousDishBandSkirtBackPlane-%s-%s' %(PhiDeg_List[phi],Frequency_List[m]))
                                                 #                                    p.gcf().legend((l,l1),('Sinuous_Dish-Band-Skirt-%s'%PhiDeg_List[0],'Sinuous_Dish-Band-Skirt-%s'%PhiDeg_List[1]),loc='upper center',ncol=2)
                                                 plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3,
-                                                            ncol=2, mode="expand", borderaxespad=1)
+                                                            ncol=1, mode="expand", borderaxespad=1)
                                                 p.grid()
                                                 p.xlabel('$\\theta$')
                                                 p.xlim(-90,90)
@@ -522,6 +553,7 @@ for N in range(2):
                                             
                                             fileNameTimeTraceCST='/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/TimeDomain_0.%i-%i-%i_dish-band-%s-skirt-%s-%s-backplane-%s-%s.txt' %(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter)
                                             fileNameS11CST='/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/S11_0.%i-%i-%i_dish-band-%s-skirt-%s-%s-backplane-%s-%s' %(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter)
+                                            fileNameImpedanceCST='/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Impedance_0.%i-%i-%i_dish-band-%s-skirt-%s-%s-backplane-%s-%s' %(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter)
                 #                            fileNameTimeTraceCST='/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Far_0.%i-%i_dish-band-%s-Skirt-%s-%s-%s-%s.txt' %(Growth_Rate,Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height,Frequecy,Port_Number)
                                             #fileNameS11VNA='../reflectometry/RichBradley_GreenBank/TallCylinderGapOverDish_S11_Greenbank_RichBradley.d1'
 
@@ -532,11 +564,15 @@ for N in range(2):
                                             gainData_timeTrace=gainData.GainData(fileNameTimeTraceCST,
                                                                                 fileType='CST_TimeTrace',
                                                                                 fMin=FLOW,fMax=FHIGH,
-                                                                                comment='s11 derived from cst time domain data')
+                                                                                comment='S11 derived from cst time domain data')
                                             gainData_cst=gainData.GainData(fileNameS11CST,
                                                                             fileType='CST_S11',
                                                                             fMin=FLOW,fMax=FHIGH,
-                                                                            comment='s11 obtained directly from cst')
+                                                                            comment='S11 obtained directly from cst')
+                                            gainData_impedance=gainData.GainData(fileNameImpedanceCST,
+                                                                            fileType='CST_Impedance',
+                                                                            fMin=FLOW,fMax=FHIGH,
+                                                                            comment='Impedance obtained directly from cst')
                                             #gainData_far=
                                             #gainData_vna=gainData.GainData(fileNameS11VNA,
                                             #							   fileType='VNAHP_S11',
@@ -544,6 +580,7 @@ for N in range(2):
                                             #							   comment='s11 obtained from richs vna measurement')
 
                                             print gainData_cst.gainFrequency.shape
+                                            print gainData_impedance.gainFrequency.shape
 
                                             #first make original plot comparing s11 of time trace and s11 of vna
 
@@ -576,6 +613,30 @@ for N in range(2):
                                             p.grid()
                                             #p.savefig('../plots/s11_CST_vs_ReflectometryRich_TallCylinderGapFeedOnly_Frequency.pdf',bbox_inches='tight')
                                             p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_CST_Frequency_0.%i-%i-%i_PW%i_Cr_dish-band-%s-skirt-%s-%s-backplane-%s-%s.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power,Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter),bbox_inches='tight')
+                                            p.close()
+                                            
+                                            p.plot(gainData_impedance.fAxis,n.abs(gainData_cst.gainFrequency),color='k',ls='-',marker='o',label='CST Impedance Abs',markersize=4,markeredgecolor='none')
+                                            p.xlim(.045,.255)
+                                            p.ylabel('|Impedance(Abs)/Ohm')
+                                            p.xlabel('f (GHz)')
+                                            p.legend(loc='best')
+                                            p.title('ImpedanceAbs_CST_Frequency_0.%i-%i-%i_dish-band-%s-skirt-%s-%s-backplane-%s-%s' %(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter)) 
+                                            #p.show()
+                                            p.grid()
+                                            #p.savefig('../plots/s11_CST_vs_ReflectometryRich_TallCylinderGapFeedOnly_Frequency.pdf',bbox_inches='tight')
+                                            p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/ImpedanceAbs_CST_Frequency_0.%i-%i-%i_dish-band-%s-skirt-%s-%s-backplane-%s-%s.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter),bbox_inches='tight')
+                                            p.close()
+                                            
+                                            p.plot(gainData_impedance.fAxis,n.angle(gainData_cst.gainFrequency),color='k',ls='-',marker='o',label='CST Impedance Pha',markersize=4,markeredgecolor='none')
+                                            p.xlim(.045,.255)
+                                            p.ylabel('|Impedance(Pha)/deg')
+                                            p.xlabel('f (GHz)')
+                                            p.legend(loc='best')
+                                            p.title('ImpedancePha_CST_Frequency_0.%i-%i-%i_dish-band-%s-skirt-%s-%s-backplane-%s-%s' %(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter)) 
+                                            #p.show()
+                                            p.grid()
+                                            #p.savefig('../plots/s11_CST_vs_ReflectometryRich_TallCylinderGapFeedOnly_Frequency.pdf',bbox_inches='tight')
+                                            p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/ImpedancePha_CST_Frequency_0.%i-%i-%i_dish-band-%s-skirt-%s-%s-backplane-%s-%s.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter),bbox_inches='tight')
                                             p.close()
                                                                                                                                 
 

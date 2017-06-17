@@ -110,8 +110,31 @@ def readCSTS11(fileName,comment='',degrees=True):
 	meta=MetaData(device='CST',dtype=['FREQ','S11'],datarange=[fAxis.min(),fAxis.max(),len(fAxis)],comment=comment)
 	return fFactor*fAxis,data,meta
 	
+def readCSTImpedance(fileName,comment='',degrees=True):
+	
+	header=open(fileName+'_abs.txt').readlines()[:2]
+	if('MHz' in header[0]):
+		fFactor=1e-3
+	elif('GHz' in header[0]):
+		fFactor=1e0
+	elif('kHz' in header[0]):
+		fFactor=1e-6
+	elif('Hz' in header[0]):
+		fFactor=1e-9
 
-FILETYPES=['CST_TimeTrace','CST_S11','VNAHP_S11']
+	amp=n.loadtxt(fileName+'_abs.txt',skiprows=2)
+	fAxis=amp[:,0]
+	amp=amp[:,1]
+
+	pha=n.loadtxt(fileName+'_pha.txt',skiprows=2)[:,1]
+	if(degrees):
+		pha*=n.pi/180.
+	data=amp*n.exp(1j*pha)
+	meta=MetaData(device='CST',dtype=['FREQ','Impedance'],datarange=[fAxis.min(),fAxis.max(),len(fAxis)],comment=comment)
+	return fFactor*fAxis,data,meta
+	
+
+FILETYPES=['CST_TimeTrace','CST_S11','VNAHP_S11','CST_Impedance']
 class GainData():
 	def __init__(self,fileName,fileType,fMin=None,fMax=None,windowFunction=None,comment='',filterNegative=False):
 		assert fileType in FILETYPES
@@ -127,6 +150,8 @@ class GainData():
 			self.fAxis,self.gainFrequency,self.metaData=readCSTS11(fileName,comment=comment)
 		elif(fileType=='VNAHP_S11'):
 			self.fAxis,self.gainFrequency,self.metaData=readVNAHP(fileName,comment=comment)
+		elif(fileType=='CST_Impedance'):
+			self.fAxis,self.gainFrequency,self.metaData=readCSTImpedance(fileName,comment=comment)
 		if(fMin is None):
 			fMin=self.fAxis.min()            
 		if(fMax is None):
