@@ -220,8 +220,8 @@ S11_3 = (1 - 85 / Trx_targ).clip(0,1)
 #PW = S11_Power = 2
 N = 0
 
-Growth_Rate_List = [49]
-Outer_Diameter_List = [225]
+Growth_Rate_List = [80]
+Outer_Diameter_List = [175]
 Inner_Diameter_List = [30]
 Band_Resistance_List = [15]
 Skirt_Diameter_List = [1.2]
@@ -233,7 +233,7 @@ Port_Number_List = [1]
 Phi_List = [0,pi/2.0]
 PhiDeg_List = [0,90]
 
-BackPlane = 0
+BackPlane = 1
 
 # Y-Direction
 
@@ -615,7 +615,7 @@ for N in range(2):
                                             p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_CST_Frequency_0.%i-%i-%i_PW%i_Cr_dish-band-%s-skirt-%s-%s-backplane-%s-%s.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power,Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter),bbox_inches='tight')
                                             p.close()
                                             
-                                            p.plot(gainData_impedance.fAxis,n.abs(gainData_cst.gainFrequency),color='k',ls='-',marker='o',label='CST Impedance Abs',markersize=4,markeredgecolor='none')
+                                            p.plot(gainData_impedance.fAxis,n.abs(gainData_impedance.gainFrequency),color='k',ls='-',marker='o',label='CST Impedance Abs',markersize=4,markeredgecolor='none')
                                             p.xlim(.045,.255)
                                             p.ylabel('|Impedance(Abs)/Ohm')
                                             p.xlabel('f (GHz)')
@@ -627,7 +627,7 @@ for N in range(2):
                                             p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/ImpedanceAbs_CST_Frequency_0.%i-%i-%i_dish-band-%s-skirt-%s-%s-backplane-%s-%s.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter),bbox_inches='tight')
                                             p.close()
                                             
-                                            p.plot(gainData_impedance.fAxis,n.angle(gainData_cst.gainFrequency),color='k',ls='-',marker='o',label='CST Impedance Pha',markersize=4,markeredgecolor='none')
+                                            p.plot(gainData_impedance.fAxis,n.angle(gainData_impedance.gainFrequency),color='k',ls='-',marker='o',label='CST Impedance Pha',markersize=4,markeredgecolor='none')
                                             p.xlim(.045,.255)
                                             p.ylabel('|Impedance(Pha)/deg')
                                             p.xlabel('f (GHz)')
