@@ -220,19 +220,20 @@ S11_3 = (1 - 85 / Trx_targ).clip(0,1)
 #PW = S11_Power = 2
 N = 0
 
-Growth_Rate_List = [80]
+Growth_Rate_List = [50]
 Outer_Diameter_List = [175]
 Inner_Diameter_List = [30]
 Band_Resistance_List = [15]
 Skirt_Diameter_List = [1.2]
 Skirt_Height_List = [0.3]
-BackPlane_Height_List = [90]
+BackPlane_Height_List = [50]
 BackPlane_Diameter_List = [0.95]
 Frequency_List = ['40','50','67','94','121','148','150','175','202','229','250','256','283']    #[40,50,67,94,121,148,150,175,202,229,250,256,283]
 Port_Number_List = [1]
 Phi_List = [0,pi/2.0]
 PhiDeg_List = [0,90]
 
+Simplify = 1
 BackPlane = 1
 
 # Y-Direction
@@ -371,12 +372,20 @@ for N in range(2):
                                                 
                                             for phi in range(len(Phi_List)):
                                                 for m in range(len(Frequency_List)):
-                                                    if m!=0 and m!=5 and m!=11 and m!=12:                                                                                                                
+                                                    if Simplify == 1:                                                        
+                                                        if m!=0 and m!=5 and m!=11 and m!=12:                                                                                                                
+                                                            nth=8000
+                                                            tha=n.degrees(n.arange(-nth/2,nth/2)*pi/nth)
+                                                    #                                    l=p.plot(tha,hpCut(Phi_List[0],nth,10*n.log10(BeamSinuousDishBandSkirt.data[0,m,:])),color='k',ls='--')[0]
+                                                            p.plot(tha,hpCut(Phi_List[phi],nth,10*n.log10(BeamSinuousDishBandSkirt.data[0,m,:])),label='SinuousDishBandSkirt-%s-%s' %(PhiDeg_List[phi],Frequency_List[m]))
+                                                    #                                    p.gcf().legend((l,l1),('Sinuous_Dish-Band-Skirt-%s'%PhiDeg_List[0],'Sinuous_Dish-Band-Skirt-%s'%PhiDeg_List[1]),loc='upper center',ncol=2)
+                                                    if Simplify == 0:
                                                         nth=8000
                                                         tha=n.degrees(n.arange(-nth/2,nth/2)*pi/nth)
                                                 #                                    l=p.plot(tha,hpCut(Phi_List[0],nth,10*n.log10(BeamSinuousDishBandSkirt.data[0,m,:])),color='k',ls='--')[0]
                                                         p.plot(tha,hpCut(Phi_List[phi],nth,10*n.log10(BeamSinuousDishBandSkirt.data[0,m,:])),label='SinuousDishBandSkirt-%s-%s' %(PhiDeg_List[phi],Frequency_List[m]))
                                                 #                                    p.gcf().legend((l,l1),('Sinuous_Dish-Band-Skirt-%s'%PhiDeg_List[0],'Sinuous_Dish-Band-Skirt-%s'%PhiDeg_List[1]),loc='upper center',ncol=2)
+                                                        
                                                 plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3,
                                                             ncol=2, mode="expand", borderaxespad=1)
                                                 p.grid()
@@ -533,7 +542,14 @@ for N in range(2):
                                                 
                                             for phi in range(len(Phi_List)):
                                                 for m in range(len(Frequency_List)):
-                                                    if m!=0 and m!=5 and m!=11 and m!=12:                                                                                                                
+                                                    if Simplify == 1:                                                        
+                                                        if m!=0 and m!=5 and m!=11 and m!=12:                                                                                                                
+                                                            nth=8000
+                                                            tha=n.degrees(n.arange(-nth/2,nth/2)*pi/nth)
+                                                    #                                    l=p.plot(tha,hpCut(Phi_List[0],nth,10*n.log10(BeamSinuousDishBandSkirt.data[0,m,:])),color='k',ls='--')[0]
+                                                            p.plot(tha,hpCut(Phi_List[phi],nth,10*n.log10(BeamSinuousDishBandSkirt.data[0,m,:])),label='SinuousDishBandSkirtBackPlane-%s-%s' %(PhiDeg_List[phi],Frequency_List[m]))
+                                                    #                                    p.gcf().legend((l,l1),('Sinuous_Dish-Band-Skirt-%s'%PhiDeg_List[0],'Sinuous_Dish-Band-Skirt-%s'%PhiDeg_List[1]),loc='upper center',ncol=2)
+                                                    if Simplify == 0:                                                        
                                                         nth=8000
                                                         tha=n.degrees(n.arange(-nth/2,nth/2)*pi/nth)
                                                 #                                    l=p.plot(tha,hpCut(Phi_List[0],nth,10*n.log10(BeamSinuousDishBandSkirt.data[0,m,:])),color='k',ls='--')[0]
