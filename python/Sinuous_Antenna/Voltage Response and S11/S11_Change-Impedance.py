@@ -61,7 +61,7 @@ PhiDeg_List = [0,90]
 Dish = ['no-imp-267-','no-imp-100-']
 Impedance_Port = [267,100]
 
-ReCalculate_Impedance = 1  
+ReCalculate_Impedance = 0  
 Simplify = 1
 BackPlane = 1
 
@@ -117,11 +117,11 @@ for N in range(2):
 													p.ylabel('|$\widetilde{S}_{11}$|(dB)')
 													p.xlabel('delay (ns)')
 													p.legend(loc='best')
-													p.title('S11_CST_Delay_0.%s-%s-%s_PW%i_dish-band_%s' %(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power,Band_Resistance))
+													p.title('S11_CST_Delay_0.%s-%s-%s_PW%s_%sband-%s-skirt-%s-%s-backplane-%s-%s' %(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power,Dish[0],Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter)) 
 													#p.show()
 													p.grid()
-													#p.savefig('../plots/s11_CST_vs_ReflectometryRich_TallCylinderGapFeedOnly_Delay.pdf',bbox_inches='tight')
-													p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_CST_Delay_0.%s-%s-%s_PW%s_Cr_dish-band_%s.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power,Band_Resistance),bbox_inches='tight')
+													#p.savefig('../plots/s11_CST_vs_ReflectometryRich_TallCylinderGapFeedOnly_Frequency.pdf',bbox_inches='tight')
+													p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_CST_Delay_0.%s-%s-%s_PW%s_Cr_%sband-%s-skirt-%s-%s-backplane-%s-%s.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power,Dish[0],Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter),bbox_inches='tight')
 													p.close()
 
 													#p.plot(gainData_vna.fAxis,10.*n.log10(n.abs(gainData_vna.gainFrequency)),color='grey',ls='-',marker='o',label='VNA Measurement',markersize=4,markeredgecolor='none')
@@ -133,11 +133,11 @@ for N in range(2):
 													p.ylabel('|S$_{11}$|(dB)')
 													p.xlabel('f (GHz)')
 													p.legend(loc='best')
-													p.title('S11_CST_Frequency_0.%s-%s-%s_PW%s_dish-band-%s' %(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power,Band_Resistance)) 
+													p.title('S11_CST_Frequency_0.%s-%s-%s_PW%s_%sband-%s-skirt-%s-%s-backplane-%s-%s' %(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power,Dish[0],Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter)) 
 													#p.show()
 													p.grid()
 													#p.savefig('../plots/s11_CST_vs_ReflectometryRich_TallCylinderGapFeedOnly_Frequency.pdf',bbox_inches='tight')
-													p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_CST_Frequency_0.%s-%s-%s_PW%s_Cr_dish-band-%s.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power,Band_Resistance),bbox_inches='tight')
+													p.savefig('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_CST_Frequency_0.%s-%s-%s_PW%s_Cr_%sband-%s-skirt-%s-%s-backplane-%s-%s.pdf'%(Growth_Rate, Inner_Diameter,Outer_Diameter,S11_Power,Dish[0],Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter),bbox_inches='tight')
 													p.close()
 												
 												
@@ -146,10 +146,10 @@ for N in range(2):
 
 												ImpedancePort = (1+gainData_cst.gainFrequency)/(1-gainData_cst.gainFrequency)*Impedance_Port[0]
 
-												n.savetxt('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_0.%s-%s-%s_%sband_%s-skirt-%s-%s-backplane-%s-%s_abs.txt'%(Growth_Rate,Inner_Diameter, Outer_Diameter,Dish[1],Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter),n.c_[gainData_cst.fAxis,n.abs(gainData_cst.gainFrequency)],fmt=['%.2f','%.4f']) 
-												n.savetxt('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_0.%s-%s-%s_%sband_%s-skirt-%s-%s-backplane-%s-%s_pha.txt'%(Growth_Rate,Inner_Diameter, Outer_Diameter,Dish[1],Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter),n.c_[gainData_cst.fAxis,n.angle(gainData_cst.gainFrequency)],fmt=['%.2f','%.4f']) 
-												n.savetxt('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/Impedance_0.%s-%s-%s_%sband_%s-skirt-%s-%s-backplane-%s-%s_abs.txt'%(Growth_Rate,Inner_Diameter, Outer_Diameter,Dish[1],Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter),n.c_[gainData_cst.fAxis,n.abs(gainData_cst.gainFrequency)],fmt=['%.2f','%.4f']) 
-												n.savetxt('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/Impedance_0.%s-%s-%s_%sband_%s-skirt-%s-%s-backplane-%s-%s_pha.txt'%(Growth_Rate,Inner_Diameter, Outer_Diameter,Dish[1],Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter),n.c_[gainData_cst.fAxis,n.angle(gainData_cst.gainFrequency)],fmt=['%.2f','%.4f']) 
+												n.savetxt('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_0.%s-%s-%s_%sband_%s-skirt-%s-%s-backplane-%s-%s_abs.txt'%(Growth_Rate,Inner_Diameter, Outer_Diameter,Dish[1],Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter),n.c_[gainData_cst.fAxis,n.abs(gainData_cst.gainFrequency)],fmt=['%.6f','%.6f']) 
+												n.savetxt('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/S11_0.%s-%s-%s_%sband_%s-skirt-%s-%s-backplane-%s-%s_pha.txt'%(Growth_Rate,Inner_Diameter, Outer_Diameter,Dish[1],Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter),n.c_[gainData_cst.fAxis,n.angle(gainData_cst.gainFrequency)],fmt=['%.6f','%.6f']) 
+												n.savetxt('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/Impedance_0.%s-%s-%s_%sband_%s-skirt-%s-%s-backplane-%s-%s_abs.txt'%(Growth_Rate,Inner_Diameter, Outer_Diameter,Dish[1],Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter),n.c_[gainData_cst.fAxis,n.abs(gainData_cst.gainFrequency)],fmt=['%.6f','%.6f']) 
+												n.savetxt('/Users/JianshuLi/Documents/Miracle/Research/Cosmology/21cm Cosmology/Results/Sinuous_Antenna/Plots/Impedance_0.%s-%s-%s_%sband_%s-skirt-%s-%s-backplane-%s-%s_pha.txt'%(Growth_Rate,Inner_Diameter, Outer_Diameter,Dish[1],Band_Resistance,Skirt_Diameter,Skirt_Height,BackPlane_Height,BackPlane_Diameter),n.c_[gainData_cst.fAxis,n.angle(gainData_cst.gainFrequency)],fmt=['%.6f','%.6f']) 
 
 												#										p.plot(gainData_timeTrace.fAxis,10.*S11_Power*n.log10(n.abs(gainData_timeTrace.gainFrequency)),color='k',ls='-',marker='o',label='CST timetrace',markersize=4,markeredgecolor='none')
 												p.plot(gainData_cst.fAxis,10.*S11_Power*n.log10(n.abs(gainData_cst.gainFrequency)),color='k',ls='--',marker='o',label='CST $S_{11}$',markersize=4,markeredgecolor='none')
