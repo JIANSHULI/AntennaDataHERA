@@ -10,7 +10,7 @@
 import numpy as n
 import matplotlib
 import matplotlib.pyplot as p
-#import healpy as hp
+import healpy as hp
 import copy
 import scipy.optimize as op
 from matplotlib import pylab as plt
@@ -329,19 +329,19 @@ BackPlane_Diameter_List = ['0.99']
 
 #Frequency_List = ['50','75','100','125','150','175','200','225','250','275','300']
 Frequency_List = ['40','50','67','94','121','148','150','175','202','229','250','256','283']    #[40,50,67,94,121,148,150,175,202,229,250,256,283]
-#Port_Number_List = ['1']
-Port_Number_List = ['2-p1','2-p2','2']
+Port_Number_List = ['1']
+#Port_Number_List = ['2-p1','2-p2','2']
 Phi_List = [0,pi/2.0]
 PhiDeg_List = [0,90]
 
 #Band_Status_List = ['band-15-']
 Band_Status_List = ['band-15-']
-Skirt_Status_List = ['skirt-1.2-0.3-']
-Skirt_Status_List = ['skirt-unsymmetric-1.2-95-0.1-']
+Skirt_Status_List = ['skirt-no-']
+#Skirt_Status_List = ['skirt-unsymmetric-1.2-95-0.1-']
 #BackPlane_Status_List = ['backcone-70-110-5-0.99','backcone-15-100-5-0.99']
 BackPlane_Status_List = ['backplane-90-0.99']
 Impedance_Port_Status_List = ['imp-267-']
-ReCalculate_Impedance = 0
+ReCalculate_Impedance = 1
 Impedance_Port_Recalculate_Status_List = ['imp-267','imp-100-']
 Impedance_Port = [267,100]
 #Dish_Status_List = ['no-']
@@ -353,7 +353,7 @@ Frequency_Spectrum = 1
 Simplify = 1
 Impedance_Calculation = 1
 BackPlane = 1
-BeamPattern = 0
+BeamPattern = 1
 Frame_Version = 2
 S11_Format = 1 # 0:old,1:new
 Direction = 1
